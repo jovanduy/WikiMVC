@@ -21,7 +21,6 @@ app.use(expressSession({secret: "notReallyASecret",
 	saveUninitialized:false}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
 mongoose.connect('mongodb://localhost/robbiesiegel');
 
