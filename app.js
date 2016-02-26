@@ -19,12 +19,12 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(expressSession({secret: "notReallyASecret",
+app.use(expressSession({secret: 'notReallyASecret',
 	resave:false,
 	saveUninitialized:false}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb://localhost/robbiesiegel');
+mongoose.connect('mongodb://bobby:droptables@ds017688.mlab.com:17688/bobbydropcollections');
 
 app.listen(3000);
