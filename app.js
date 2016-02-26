@@ -7,7 +7,7 @@ var passport = require('passport');
 var expressSession = require('express-session');
 var app = express();
 
-var index = require('.routes/index.js');
+var index = require('./routes/index.js');
 var pages = require('./routes/pages.js');
 
 app.use( bodyParser.json() ); 
