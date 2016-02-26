@@ -1,0 +1,29 @@
+{
+  "name": "robbiesiegel",
+  "version": "1.0.0",
+  "description": "The Official Robbie Siegel Wikipedia page about Robbie Siegel...",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jovanduy/WikiMVC.git"
+  },
+  "keywords": [
+    "Robbie",
+    "Siegel",
+    "Bobby",
+    "Drop",
+    "Tables"
+  ],
+  "author": "Jordan Van Duyne, Andrew Deaver",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jovanduy/WikiMVC/issues"
+  },
+  "homepage": "https://github.com/jovanduy/WikiMVC#readme",
+  "dependencies": {
+    "mongoose": "^4.4.5"
+  }
+}
