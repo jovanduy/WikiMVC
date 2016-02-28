@@ -43,6 +43,7 @@ app.get('/logout', function(req, res) {
 	res.redirect('/');
 });
 
+app.get('/page/:id', pages.getPage);
 app.post('/add', pages.add);
 app.post('/edit', pages.edit);
 app.post('/delete', pages.delete);

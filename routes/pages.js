@@ -6,7 +6,7 @@ routes.add = function (req, res) {
     var page = req.body;
     var newPage = new Page(page);
     newPage.save(function (err) {
-        if (err) res.status(500).send('Problem adding new page');
+        if (err) res.status(500).send('Error adding new page');
     });
     res.send(newPage);
 };
@@ -25,5 +25,12 @@ routes.delete = function (req, res) {
     });
     res.end();
 };
+
+routes.getPage = function (req, res) {
+    Page.findById(req.params.id, function (err, page) {
+        if (err) res.status(500).send('Error finding page');
+        res.send(page);
+    });
+}
 
 module.exports = routes;
