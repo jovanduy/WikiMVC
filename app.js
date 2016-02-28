@@ -10,6 +10,7 @@ var app = express();
 var index = require('./routes/index.js');
 var pages = require('./routes/pages.js');
 var initPassport = require('./passport/initPassport.js');
+var checkAuth = require('./passport/authentication.js');
 
 app.use( bodyParser.json() ); 
 app.use(bodyParser.urlencoded({
@@ -40,10 +41,10 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 
 app.get('/logout', function(req, res) {
 	req.logout();
-	res.redirect('/');
+	res.redirect(req.headers.referer ? req.headers.referer : '/');
 });
 
-app.get('/login', index.login);
+app.get('/login', checkAuth, index.login);
 
 app.get('/page/:id', pages.getPage);
 app.post('/add', pages.add);
