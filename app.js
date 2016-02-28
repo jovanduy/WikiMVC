@@ -43,4 +43,8 @@ app.get('/logout', function(req, res) {
 	res.redirect('/');
 });
 
+app.post('/add', pages.add);
+app.post('/edit', pages.edit);
+app.post('/delete', pages.delete);
+
 app.listen(process.env.PORT || 3000);
