@@ -19,3 +19,4 @@ var login = function(req, res) {
 }
 
 module.exports.home = home;
+module.exports.login = login;
