@@ -1,19 +1,24 @@
-<nav>
-    <button>Home</button>
-    <button>Add Page</button>
-    <button>Login</button>
-    <button>Logout</button>
-</nav>
+<div ng-controller="robbieController">
 
-<ul>
-    <li class="pages" ng-repeat="page in pages">
-        <span>{{page.title}}</span>
-    </li>
-</ul>
+    <ul>
+        <li class="pages" ng-repeat="page in pages">
+            <a href="/pages/{{page._id}}">{{page.title}}</a>
+            <button ng-click="deletePage($index)">Delete</button>
+        </li>
+    </ul>
 
-<div>
-    <h2>"Bitches be bitchin... but bad bitches be bad bitchin"</h2>
-    <h3>- Robbie</h3>
-    
-    <img src="./images/robbieHomePage.jpg">
+    <form>
+        <input type="text" placeholder="Title" ng-model="formPageTitle"><br>
+        <textarea placeholder="Content" ng-model="formPageContent"></textarea>
+        <button class="btn" ng-click="addPage()">Add</button>
+    </form>
+
+
+
+    <div>
+        <h2>"Bitches be bitchin... but bad bitches be bad bitchin"</h2>
+        <h3>- Robbie</h3>
+        
+        <img src="./images/robbieHomePage.jpg">
+    </div>
 </div>

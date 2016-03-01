@@ -1,4 +1,5 @@
 var Page = require('../models/pageModel.js');
+var path = require('path');
 
 var routes = {};
 
@@ -20,8 +21,8 @@ routes.edit = function (req, res) {
 };
 
 routes.delete = function (req, res) {
-    Page.remove({_id: req.body.id}, function (err) {
-        res.status(500).send('Error deleting page');
+    Page.remove({_id: req.params.id}, function (err) {
+        if (err) res.status(500).send('Error deleting page');
     });
     res.end();
 };
@@ -29,7 +30,7 @@ routes.delete = function (req, res) {
 routes.getPage = function (req, res) {
     Page.findById(req.params.id, function (err, page) {
         if (err) res.status(500).send('Error finding page');
-        res.send(page);
+        res.sendFile('main.html', { root: path.join(__dirname, '../public/views/layouts') });
     });
 }
 

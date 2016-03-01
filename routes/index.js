@@ -33,7 +33,7 @@ var loadPages = function (req, res) {
 }
 
 var login = function(req, res) {
-	res.render('login');
+	res.sendFile('main.html', { root: path.join(__dirname, '../public/views/layouts') });
 }
 
 module.exports.home = home;

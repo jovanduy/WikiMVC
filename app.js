@@ -47,9 +47,9 @@ app.get('/logout', function(req, res) {
 
 app.get('/login', checkAuth, index.login);
 
-app.get('/page/:id', pages.getPage);
+app.get('/pages/:id', pages.getPage);
 app.post('/add', pages.add);
 app.post('/edit', pages.edit);
-app.post('/delete', pages.delete);
+app.delete('/pages/:id', pages.delete);
 
 app.listen(process.env.PORT || 3000);
