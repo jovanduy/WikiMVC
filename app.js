@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var exphbs = require('express-handlebars');
+// var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 })); 
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+// app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({secret: 'notReallyASecret',
@@ -32,6 +32,7 @@ initPassport(passport);
 mongoose.connect('mongodb://bobby:droptables@ds017688.mlab.com:17688/bobbydropcollections');
 
 app.get('/', index.home);
+app.get('/pages', index.loadPages);
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
