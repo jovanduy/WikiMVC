@@ -3,6 +3,7 @@ var Page = require('../models/pageModel.js');
 var routes = {};
 
 routes.add = function (req, res) {
+    // Needs to account for timestamp and user information
     var page = req.body;
     var newPage = new Page(page);
     newPage.save(function (err) {
@@ -29,7 +30,7 @@ routes.delete = function (req, res) {
 routes.getPage = function (req, res) {
     Page.findById(req.params.id, function (err, page) {
         if (err) res.status(500).send('Error finding page');
-        res.send(page);
+        res.render('page', page);
     });
 }
 

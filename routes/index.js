@@ -2,6 +2,7 @@ var Pages = require('../models/pageModel.js');
 
 var home = function(req, res){
 	// Set up query to find all page titles ordered by most recently updated
+	console.log(req);
 	var pageQuery = Pages.find({}).select('title').sort({timestamp: -1});
 
 	// execute query
@@ -14,9 +15,4 @@ var home = function(req, res){
 	});
 };
 
-var login = function(req, res) {
-	res.render('login');
-}
-
 module.exports.home = home;
-module.exports.login = login;

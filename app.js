@@ -44,8 +44,6 @@ app.get('/logout', function(req, res) {
 	res.redirect(req.headers.referer ? req.headers.referer : '/');
 });
 
-app.get('/login', checkAuth, index.login);
-
 app.get('/page/:id', pages.getPage);
 app.post('/add', pages.add);
 app.post('/edit', pages.edit);
