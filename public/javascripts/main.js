@@ -15,10 +15,13 @@ app.config(function($routeProvider, $locationProvider){
 
 app.controller('robbieController', function ($scope, $http, $location) {
     $scope.pages = [];
+    $scope.story = null;
+    $scope.user = null;
     
     $http.get('/pages')
         .then(function (response) {
             $scope.pages = response.data.pages;
+            $scope.user = response.data.user;
     });
     
     $scope.addPage = function () {
