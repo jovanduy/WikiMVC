@@ -29,9 +29,12 @@ routes.delete = function (req, res) {
 };
 
 routes.getPage = function (req, res) {
+    var data = {};
     Page.findById(req.params.id, function (err, page) {
         if (err) res.status(500).send('Error finding page');
-        res.json(page);
+        data.pageInfo = page;
+        data.user = req.user;
+        res.json(data);
     });
 }
 

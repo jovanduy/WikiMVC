@@ -9,11 +9,16 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl : '../views/home.html',
     	controller: "robbieController"
     })
+
+    .when("/editPage/:id", {
+        templateUrl: '../views/edit.html',
+        controller: 'editController'
+    })
     
     $locationProvider.html5Mode(true);
 });
 
-app.controller('robbieController', function ($scope, $http, $location) {
+app.controller('robbieController', function ($scope, $http, $location, $window) {
     $scope.pages = [];
     $scope.story = null;
     $scope.user = null;
@@ -50,11 +55,38 @@ app.controller('robbieController', function ($scope, $http, $location) {
     $scope.getStory = function(id) {
         $http.get('/page/' + id)
             .then(function(response) {
-                $scope.story = response.data;
+                $scope.story = response.data.pageInfo;
             });
     }
 
     $scope.editPage = function(id) {
-        console.log(id);
+        $window.location.href = '/editPage/' + id;
     }
+});
+
+app.controller('editController', function ($scope, $http, $location, $routeParams, $window) {
+    $scope.page = null;
+    $scope.user = null;
+
+    $http.get('/page/' + $routeParams.id)
+        .then(function(response) {
+            $scope.page = response.data.pageInfo;
+
+            $scope.editTitle = $scope.page.title;
+            $scope.editContent = $scope.page.content;
+
+            $scope.user = response.data.user;
+        });
+
+    $scope.sendEdits = function() {
+        $http.post('/edit', {
+            id:$scope.page._id,
+            title:$scope.editTitle,
+            content:$scope.editContent,
+            user:$scope.user.name
+        })
+            .then(function(response) {
+                $window.location.href = '/';
+            });
+    };
 });

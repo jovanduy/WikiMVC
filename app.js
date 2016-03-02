@@ -33,6 +33,7 @@ mongoose.connect('mongodb://bobby:droptables@ds017688.mlab.com:17688/bobbydropco
 
 app.get('/', index.home);
 app.get('/pages', index.loadPages);
+app.get('/editPage/:id', checkAuth, index.editPages);
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
