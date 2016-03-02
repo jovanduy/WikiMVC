@@ -37,7 +37,7 @@ app.get('/pages', index.loadPages);
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 	successRedirect:'/',
-	failureRedirect:'/login'
+	failureRedirect:'/'
 }));
 
 app.get('/logout', function(req, res) {
@@ -45,9 +45,9 @@ app.get('/logout', function(req, res) {
 	res.redirect(req.headers.referer ? req.headers.referer : '/');
 });
 
-app.get('/login', checkAuth, index.login);
 
-app.get('/pages/:id', pages.getPage);
+app.get('/page/:id', pages.getPage);
+
 app.post('/add', pages.add);
 app.post('/edit', pages.edit);
 app.delete('/pages/:id', pages.delete);

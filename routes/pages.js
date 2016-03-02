@@ -4,6 +4,7 @@ var path = require('path');
 var routes = {};
 
 routes.add = function (req, res) {
+    // Needs to account for timestamp and user information
     var page = req.body;
     var newPage = new Page(page);
     newPage.save(function (err) {
