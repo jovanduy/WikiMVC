@@ -14,6 +14,11 @@ app.config(function($routeProvider, $locationProvider){
         templateUrl: '../views/edit.html',
         controller: 'editController'
     })
+
+    .when("/_=_", {
+        templateUrl: '../views/home.html',
+        controller: 'redirectController'
+    })
     
     $locationProvider.html5Mode(true);
 });
@@ -29,6 +34,10 @@ app.controller('robbieController', function ($scope, $http, $location, $window) 
             $scope.user = response.data.user;
     });
     
+    $scope.search = function() {
+        console.log('Changed');
+    }
+
     $scope.addPage = function () {
         $http.post('/add', {
             title: $scope.formPageTitle,
@@ -89,4 +98,8 @@ app.controller('editController', function ($scope, $http, $location, $routeParam
                 $window.location.href = '/';
             });
     };
+});
+
+app.controller('redirectController', function ($scope, $http, $location, $window) {
+    $window.location.href='/';
 });
