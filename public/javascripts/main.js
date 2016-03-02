@@ -28,7 +28,9 @@ app.controller('robbieController', function ($scope, $http, $location) {
         $http.post('/add', {
             title: $scope.formPageTitle,
             content: $scope.formPageContent,
-            timestamp: Date()
+            timestamp: Date(),
+            userCreated: $scope.user.name,
+            userLastEdited: $scope.user.name
         })
             .then(function (response) {
                 $scope.pages.unshift(response.data);
@@ -50,5 +52,9 @@ app.controller('robbieController', function ($scope, $http, $location) {
             .then(function(response) {
                 $scope.story = response.data;
             });
+    }
+
+    $scope.editPage = function(id) {
+        console.log(id);
     }
 });

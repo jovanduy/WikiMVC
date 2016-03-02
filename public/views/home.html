@@ -18,10 +18,10 @@
             </li>
         </ul>
 
-        <form ng-if="user.name !== undefined">
+        <form>
             <input type="text" placeholder="Title" ng-model="formPageTitle"><br>
             <textarea placeholder="Content" ng-model="formPageContent"></textarea>
-            <button class="btn" ng-click="addPage()">Add</button>
+            <button ng-if="user.name !== undefined" class="btn" ng-click="addPage()">Add</button>
         </form>
     </div>
 
@@ -31,6 +31,6 @@
         <h1>{{story.title}}</h1>
         <p>{{story.content}}</p>
         <p>Created by {{story.userCreated}}; last edited by {{story.userLastEdited}}</p>
-        <button>Edit Page</button>
+        <button ng-if="user.name !== undefined" ng-click="editPage(story._id)">Edit Page</button>
     </div>
 </div>
