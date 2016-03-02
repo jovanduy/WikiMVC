@@ -11,9 +11,9 @@
     </div>
 
     <div id='middle'>
-        <ul>
-            <li class="pages" ng-repeat="page in pages">
-                <p ng-click="getStory(page._id)">{{page.title}}</a>
+        <ul class="pagesList">
+            <li ng-repeat="page in pages">
+                <p class="pages" ng-click="getStory(page._id)">{{page.title}}</a>
                 <button ng-if="page.userCreated == user.name" ng-click="deletePage($index)">Delete</button>
             </li>
         </ul>

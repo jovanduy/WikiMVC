@@ -1,3 +1,13 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    /*margin: 1vw;*/
+	color: gray;
+    /*position: absolute;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*width: 400;*/
+}
+
 img {
     width: 30%;
     height: 30%;
@@ -9,7 +19,7 @@ nav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #88cccd;
 }
 
 .navBtn {
@@ -22,7 +32,21 @@ nav {
 }
 
 .navBtn:hover:not(.active) {
-    background-color: #111;
+    background-color: #aeeaea;
+}
+
+.pagesList {
+    list-style-type: none;
+    /*justify-content: center;*/
+}
+
+.pages {
+    padding: 14px 16px;
+    color: white;
+    background-color: #FFBDBD;
+    box-shadow: 1px 1px 1px grey;
+    margin: 5px;
+    /*border-radius: 8px;*/
 }
 
 #mainContent {
