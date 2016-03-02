@@ -31,7 +31,7 @@ routes.delete = function (req, res) {
 routes.getPage = function (req, res) {
     Page.findById(req.params.id, function (err, page) {
         if (err) res.status(500).send('Error finding page');
-        res.sendFile('main.html', { root: path.join(__dirname, '../public/views/layouts') });
+        res.json(page);
     });
 }
 

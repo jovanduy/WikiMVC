@@ -1,8 +1,7 @@
 <div ng-controller="robbieController">
-
     <ul>
         <li class="pages" ng-repeat="page in pages">
-            <a href="/pages/{{page._id}}">{{page.title}}</a>
+            <p ng-click="getStory(page._id)">{{page.title}}</a>
             <button ng-click="deletePage($index)">Delete</button>
         </li>
     </ul>
@@ -20,5 +19,10 @@
         <h3>- Robbie</h3>
         
         <img src="./images/robbieHomePage.jpg">
+    </div>
+
+    <div>
+        <h1>{{story.title}}</h1>
+        <p>{{story.content}}</p>
     </div>
 </div>

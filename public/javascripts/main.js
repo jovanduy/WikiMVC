@@ -10,16 +10,6 @@ app.config(function($routeProvider, $locationProvider){
     	controller: "robbieController"
     })
     
-    .when("/page/:id", {
-        templateUrl: '../views/page.html',
-        controller: "pageController"
-    })
-    
-    .when("/login", {
-        templateUrl: '../views/login.html',
-        controller: "loginController"
-    })
-    
     $locationProvider.html5Mode(true);
 });
 
@@ -28,7 +18,7 @@ app.controller('robbieController', function ($scope, $http, $location) {
     
     $http.get('/pages')
         .then(function (response) {
-            $scope.pages = response.data;
+            $scope.pages = response.data.pages;
     });
     
     $scope.addPage = function () {
@@ -51,5 +41,11 @@ app.controller('robbieController', function ($scope, $http, $location) {
                 $scope.pages.splice(index, 1);
             });
     }
-    
+
+    $scope.getStory = function(id) {
+        $http.get('/page/' + id)
+            .then(function(response) {
+                $scope.story = response.data;
+            });
+    }
 });

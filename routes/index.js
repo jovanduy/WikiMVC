@@ -21,6 +21,7 @@ var home = function(req, res){
 var loadPages = function (req, res) {
     	 // Set up query to find all page titles ordered by most recently updated
 	var pageQuery = Pages.find({}).sort({timestamp: -1});
+	var data = {};
 
 	// execute query
 	pageQuery.exec(function(err, pages) {
@@ -28,7 +29,9 @@ var loadPages = function (req, res) {
 		if(err) {
 			res.status(500).send('Could not load page information');
 		}
-		res.json(pages);
+		data.user = req.user !== undefined ? req.user : {};
+		data.pages = pages;
+		res.json(data);
 	});
 }
 
