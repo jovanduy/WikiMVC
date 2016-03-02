@@ -1,36 +1,40 @@
 <div id='mainContent' ng-controller="robbieController">
-    <div id='farleft'>
-        <div>
-            <h2>"Bitches be bitchin... but bad bitches be bad bitchin"</h2>
-            <h3>- Sir Dr. Reverend Robert Mathew Siegel Esquire</h3>
-            <h3> aka "Slick Dick Rick"</h3>
-            <h3> aka "Bobby Drop Tables"</h3>
-            
-            <img src="./images/robbieHomePage.jpg">
+    <div id='left'>
+        <div id='add' ng-if="user.name !== undefined">
+            <h4>add an entry</h4>
+            <form>
+                <input id="page_title_input" type="text" placeholder="Title" ng-model="formPageTitle"><br />
+                <textarea id="page_content_area" rows='8' placeholder="Content" ng-model="formPageContent"></textarea><br />
+                <button id='submitpagebtn' class="btn" ng-click="addPage()">Add</button>
+            </form>
         </div>
-    </div>
 
-    <div id='middle'>
         <ul>
             <li class="pages" ng-repeat="page in pages">
                 <p ng-click="getStory(page._id)">{{page.title}}</a>
                 <button ng-if="page.userCreated == user.name" ng-click="deletePage($index)">Delete</button>
             </li>
         </ul>
-
-        <form>
-            <input type="text" placeholder="Title" ng-model="formPageTitle"><br>
-            <textarea placeholder="Content" ng-model="formPageContent"></textarea>
-            <button ng-if="user.name !== undefined" class="btn" ng-click="addPage()">Add</button>
-        </form>
     </div>
 
 
     <div ng-if="story !== null" id='story'>
-        &nbsp;
         <h1>{{story.title}}</h1>
         <p>{{story.content}}</p>
         <p>Created by {{story.userCreated}}; last edited by {{story.userLastEdited}}</p>
         <button ng-if="user.name !== undefined" ng-click="editPage(story._id)">Edit Page</button>
+    </div>
+
+    <div ng-if="story === null" id='story_placeholder'>
+        <div id="placeholder_image_area">
+            <img id="placeholder_image" src="./images/robbieHomePage.jpg">
+        </div>
+
+        <div id="placeholder_text">
+            <h2>"Bitches be bitchin... but bad bitches be bad bitchin"</h2>
+            <h3>- Sir Dr. Reverend Robert Mathew Siegel Esquire</h3>
+            <h3> aka "Slick Dick Rick"</h3>
+            <h3> aka "Bobby Drop Tables"</h3>
+        </div>
     </div>
 </div>
