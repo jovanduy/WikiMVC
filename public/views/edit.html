@@ -1,5 +1,11 @@
 <div ng-controller="editController">
-	<form>
+	<nav>
+        <span class="navBtn" class="navBtn" ng-click="showHome()">Home</span>
+        <span class="navBtn" ng-if="user.name !== undefined" ng-click="showAdd()">Add</span>
+        <a href="/auth/facebook" class="navBtn" target="_self" ng-if="user.name == undefined">Login</a>
+        <a class="navBtn" href="/logout" target="_self" ng-if="user.name !== undefined">Logout</a>
+    </nav>
+    <form>
 		<input type='text' class='edit' ng-model='editTitle' /><br />
 		<textarea class='edit' ng-model='editContent'></textarea><br />
 		<button ng-click='sendEdits()'>Finalize Edits</button>

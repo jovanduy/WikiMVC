@@ -2,16 +2,35 @@ body {
     font-family: 'Open Sans', sans-serif;
     /*margin: 1vw;*/
 	color: gray;
-    /*position: absolute;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
+    /*position: absolute;
+    display: flex;
+    justify-content: center;*/
     /*width: 400;*/
 }
 
 img {
-    width: 40%;
-    height: 40%;
+    width: 20%;
+    height: 20%;
     border-radius: 8px;
+    
+}
+
+button {
+    background-color: #FFE66F;
+    border: none;
+    /*color: white;*/
+    color: gray;
+    padding: px 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /*font-size: 16px;*/
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #fff2b3;
 }
 
 nav {
@@ -29,6 +48,7 @@ nav {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .navBtn:hover:not(.active) {
@@ -37,6 +57,9 @@ nav {
 
 .pages_list {
     list-style-type: none;
+    float: left;
+    width: 330px;
+    flex:1;
 }
 
 .pages {
@@ -44,30 +67,40 @@ nav {
     color: white;
     background-color: #FFBDBD;
     box-shadow: 1px 1px 1px grey;
-    margin: 5px;
+    /*margin: 5px;*/
+    /*flex:1;*/
+    margin-right: 3vw;
 }
 
 .pages:hover:not(.active) {
     background-color: #FF8080;
 }
 
+/*.delete {
+    float: right;
+}*/
+
 .created_by {
     color: #b3b3b3;
     font-style: italic;
 }
 
+
 #mainContent {
     width:100%;
-    display:flex;
-    flex-direction:row;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    /*display:flex;
+    flex-direction:row;*/
 }
-
+/*
 #left {
     flex:1;
     margin-right: 3vw;
-}
+}*/
 
-#story_placeholder {
+/*#story_placeholder {
     flex: 3;
     display:flex;
     flex-direction:row;
@@ -87,13 +120,34 @@ nav {
 
 #story {
     flex: 3;
+}*/
+
+#main {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    /*display: inline-block;*/
+    /*position: relative;
+    margin: auto;
+    float: left;*/
+    flex: 3;
 }
 
 textarea {
     resize: none;
+    width:85%;
+    display:block;
+    margin: auto;
+    margin-top:15px;
+    font-size: 105%;
 }
 
-#page_content_area {
+input {
+    width:85%;
+    display:block;
+    margin:auto;
+    font-size: 120%;
+}
+/*#page_content_area {
     width:85%;
     display:block;
     margin: auto;
@@ -104,7 +158,7 @@ textarea {
     width:85%;
     display:block;
     margin:auto;
-}
+}*/
 
 #submitpagebtn {
     margin-right:5%;

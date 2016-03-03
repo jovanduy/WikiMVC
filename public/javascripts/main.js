@@ -25,8 +25,10 @@ app.config(function($routeProvider, $locationProvider){
 
 app.controller('robbieController', function ($scope, $http, $location, $window) {
     $scope.pages = [];
+    $scope.home = true;
     $scope.story = null;
     $scope.user = null;
+    $scope.add = null;
     
     // get all of the pages from the database upon loading
     $http.get('/pages')
@@ -37,6 +39,20 @@ app.controller('robbieController', function ($scope, $http, $location, $window) 
     
     $scope.search = function() {
         console.log('Changed');
+    }
+    
+    // display the add page fields
+    $scope.showAdd = function () {
+        $scope.story = null;
+        $scope.home = false;
+        $scope.add = true;
+    }
+    
+    // display the home page
+    $scope.showHome = function () {
+        $scope.story = null;
+        $scope.add = false;
+        $scope.home = true;
     }
     
     // add a page
@@ -65,17 +81,61 @@ app.controller('robbieController', function ($scope, $http, $location, $window) 
                 $scope.pages.splice(index, 1);
             });
     }
-
-    $scope.getStory = function(id) {
-        $http.get('/page/' + id)
+    
+    // $scope.getStory = function (index) {
+    //     $scope.story = $scope.pages[index];
+    //     $scope.story.editing = false;
+    //     $scope.home = false;
+    //     $scope.add = false;
+    // }
+    
+    $scope.editPage = function(id) {
+        $scope.story.editing = true;
+    }
+    
+    $scope.sendEdits = function(index) {
+        console.log($scope.story.title);
+        $http.put('/pages/' + $scope.story._id, {
+            id:$scope.story._id,
+            title:$scope.story.title,
+            content:$scope.story.content,
+            user:$scope.user.name//,
+            // timestamp: Date()
+            
+        })
+            .then(function(response) {
+                $scope.story.editing = false;
+                $scope.pages[index] = $scope.story;
+                $scope.getStory($scope.story._id, index)
+            });
+    };
+    
+    $scope.getStory = function(id, index) {
+        $http.get('/pages/' + id)
             .then(function(response) {
                 $scope.story = response.data.pageInfo;
+                $scope.story.editing = false;
+                $scope.story.index = index;
+                $scope.home = false;
+                $scope.add = false;
             });
     }
 
-    $scope.editPage = function(id) {
-        $window.location.href = '/editPage/' + id;
-    }
+    // $scope.sendEdits = function() {
+    //     $http.put('/pages/' + $scope.story._id, {
+    //         id:$scope.story._id,
+    //         title:$scope.editTitle,
+    //         content:$scope.editContent,
+    //         user:$scope.user.name
+    //     })
+    //         .then(function(response) {
+    //             $window.location.href = '/';
+    //         });
+    // };
+    
+    // $scope.editPage = function(id) {
+    //     $window.location.href = '/editPage/' + id;
+    // }
 });
 
 app.controller('editController', function ($scope, $http, $location, $routeParams, $window) {
@@ -92,17 +152,17 @@ app.controller('editController', function ($scope, $http, $location, $routeParam
             $scope.user = response.data.user;
         });
 
-    $scope.sendEdits = function() {
-        $http.post('/edit', {
-            id:$scope.page._id,
-            title:$scope.editTitle,
-            content:$scope.editContent,
-            user:$scope.user.name
-        })
-            .then(function(response) {
-                $window.location.href = '/';
-            });
-    };
+    // $scope.sendEdits = function() {
+    //     $http.post('/edit', {
+    //         id:$scope.page._id,
+    //         title:$scope.editTitle,
+    //         content:$scope.editContent,
+    //         user:$scope.user.name
+    //     })
+    //         .then(function(response) {
+    //             $window.location.href = '/';
+    //         });
+    // };
 });
 
 app.controller('redirectController', function ($scope, $http, $location, $window) {
