@@ -9,9 +9,9 @@
             </form>
         </div>
 
-        <ul>
-            <li class="pages" ng-repeat="page in pages">
-                <p ng-click="getStory(page._id)">{{page.title}}</a>
+        <ul class="pages_list">
+            <li ng-repeat="page in pages">
+                <p class="pages" ng-click="getStory(page._id)">{{page.title}}</a>
                 <button ng-if="page.userCreated == user.name" ng-click="deletePage($index)">Delete</button>
             </li>
         </ul>
@@ -21,13 +21,13 @@
     <div ng-if="story !== null" id='story'>
         <h1>{{story.title}}</h1>
         <p>{{story.content}}</p>
-        <p>Created by {{story.userCreated}}; last edited by {{story.userLastEdited}}</p>
+        <p class="created_by">Created by {{story.userCreated}}; last edited by {{story.userLastEdited}} at {{story.timestamp}}</p>
         <button ng-if="user.name !== undefined" ng-click="editPage(story._id)">Edit Page</button>
     </div>
 
     <div ng-if="story === null" id='story_placeholder'>
         <div id="placeholder_image_area">
-            <img id="placeholder_image" src="./images/robbieHomePage.jpg">
+            <img id="placeholder_image" src="./images/croppedToRobbieSize.jpg">
         </div>
 
         <div id="placeholder_text">

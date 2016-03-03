@@ -28,6 +28,7 @@ app.controller('robbieController', function ($scope, $http, $location, $window) 
     $scope.story = null;
     $scope.user = null;
     
+    // get all of the pages from the database upon loading
     $http.get('/pages')
         .then(function (response) {
             $scope.pages = response.data.pages;
@@ -37,7 +38,8 @@ app.controller('robbieController', function ($scope, $http, $location, $window) 
     $scope.search = function() {
         console.log('Changed');
     }
-
+    
+    // add a page
     $scope.addPage = function () {
         $http.post('/add', {
             title: $scope.formPageTitle,
@@ -47,12 +49,15 @@ app.controller('robbieController', function ($scope, $http, $location, $window) 
             userLastEdited: $scope.user.name
         })
             .then(function (response) {
+                // add new page title to top of list
+                // and clear input fields
                 $scope.pages.unshift(response.data);
                 $scope.formPageTitle = '';
                 $scope.formPageContent = '';
             });
     }
     
+    // delete a page
     $scope.deletePage = function (index) {
         var id = $scope.pages[index]._id;
         $http.delete('/pages/' + id)
