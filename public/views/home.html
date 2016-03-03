@@ -3,8 +3,8 @@
         <div id='add' ng-if="user.name !== undefined">
             <h4>add an entry</h4>
             <form>
-                <input id="page_title_input" type="text" placeholder="Title" ng-model="formPageTitle"><br />
-                <textarea id="page_content_area" rows='8' placeholder="Content" ng-model="formPageContent"></textarea><br />
+                <input id="page_title_input" type="text" placeholder="Title" ng-model="$parent.formPageTitle"><br />
+                <textarea id="page_content_area" rows='8' placeholder="Content" ng-model="$parent.formPageContent"></textarea><br />
                 <button id='submitpagebtn' class="btn" ng-click="addPage()">Add</button>
             </form>
         </div>
