@@ -19,7 +19,7 @@ var home = function(req, res){
 };
 
 var loadPages = function (req, res) {
-    	 // Set up query to find all page titles ordered by most recently updated
+    // Set up query to find all page titles ordered by most recently updated
 	var pageQuery = Pages.find({}).sort({timestamp: -1});
 	var data = {};
 

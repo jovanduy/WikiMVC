@@ -4,7 +4,7 @@ var path = require('path');
 var routes = {};
 
 routes.add = function (req, res) {
-    // Needs to account for timestamp and user information
+    // save page to db
     var page = req.body;
     var newPage = new Page(page);
     newPage.save(function (err) {
@@ -14,6 +14,7 @@ routes.add = function (req, res) {
 };
 
 routes.edit = function (req, res) {
+    // edit page by id
     var page = req.body;
     Page.findByIdAndUpdate(page.id, {content: page.content, timeStamp: Date(), userLastEdited: page.user}, {new: true}, function (err, page) {
         if (err) res.status(500).send('Error updating page');
@@ -22,6 +23,7 @@ routes.edit = function (req, res) {
 };
 
 routes.delete = function (req, res) {
+    // 
     Page.remove({_id: req.params.id}, function (err) {
         if (err) res.status(500).send('Error deleting page');
     });
