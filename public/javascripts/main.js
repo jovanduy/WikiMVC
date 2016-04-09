@@ -4,18 +4,21 @@ app.config(function($routeProvider, $locationProvider){
 
   $routeProvider
 
-	.when("/",
-	{
+    .when("/",
+    {
 		templateUrl : '../views/home.html',
     	controller: "robbieController"
     })
 
-    .when("/editPage/:id", {
+    .when("/editPage/:id",
+    {
         templateUrl: '../views/edit.html',
         controller: 'editController'
     })
 
-    .when("/_=_", {
+    //you might just want to chop of the _=_ instead of doing a full redirect could save the flash
+    .when("/_=_",
+    {
         templateUrl: '../views/home.html',
         controller: 'redirectController'
     })
@@ -23,6 +26,7 @@ app.config(function($routeProvider, $locationProvider){
     $locationProvider.html5Mode(true);
 });
 
+//Might want to split up controllers into different files
 app.controller('robbieController', function ($scope, $http, $location, $window) {
     $scope.pages = [];
     $scope.home = true;
@@ -36,7 +40,8 @@ app.controller('robbieController', function ($scope, $http, $location, $window) 
             $scope.pages = response.data.pages;
             $scope.user = response.data.user;
     });
-    
+   
+    //what is this for?
     $scope.search = function() {
         console.log('Changed');
     }
@@ -103,24 +108,25 @@ app.controller('robbieController', function ($scope, $http, $location, $window) 
             // timestamp: Date()
             
         })
-            .then(function(response) {
-                $scope.story.editing = false;
-                $scope.pages[index] = $scope.story;
-                $scope.getStory($scope.story._id, index)
-            });
+        .then(function(response) {
+            $scope.story.editing = false;
+            $scope.pages[index] = $scope.story;
+            $scope.getStory($scope.story._id, index)
+        });
     };
     
     $scope.getStory = function(id, index) {
         $http.get('/pages/' + id)
-            .then(function(response) {
-                $scope.story = response.data.pageInfo;
-                $scope.story.editing = false;
-                $scope.story.index = index;
-                $scope.home = false;
-                $scope.add = false;
-            });
+        .then(function(response) {
+            $scope.story = response.data.pageInfo;
+            $scope.story.editing = false;
+            $scope.story.index = index;
+            $scope.home = false;
+            $scope.add = false;
+        });
     }
 
+    // why do you have two copies of most of these functions?
     // $scope.sendEdits = function() {
     //     $http.put('/pages/' + $scope.story._id, {
     //         id:$scope.story._id,
