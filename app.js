@@ -25,6 +25,11 @@ app.use(passport.session());
 
 initPassport(passport);
 
+// Instead you may use the following:
+// defines mongoURI and connects to it, depending on connection
+// var mongoURI = process.env.MONGOURI || "mongodb://localhost/test";
+// mongoose.connect(mongoURI);
+
 mongoose.connect('mongodb://bobby:droptables@ds017688.mlab.com:17688/bobbydropcollections');
 
 app.get('/', index.home);

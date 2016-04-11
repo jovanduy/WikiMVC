@@ -3,6 +3,7 @@ var Pages = require('../models/pageModel.js');
 var path = require('path');
 
 var home = function(req, res){
+	// At production it's better to get rid of all not-used commented code parts
 	// // Set up query to find all page titles ordered by most recently updated
 	// var pageQuery = Pages.find({}).select('title').sort({timestamp: -1});
 
@@ -20,6 +21,7 @@ var home = function(req, res){
 
 var loadPages = function (req, res) {
     // Set up query to find all page titles ordered by most recently updated
+    // I like the parameterization of your Page queries
 	var pageQuery = Pages.find({}).sort({timestamp: -1});
 	var data = {};
 

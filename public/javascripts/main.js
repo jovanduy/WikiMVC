@@ -1,5 +1,6 @@
 var app = angular.module('robbieApp', ['ngRoute']);
 
+// Perfect, I was looking for people to use the routeProvider
 app.config(function($routeProvider, $locationProvider){
 
   $routeProvider
